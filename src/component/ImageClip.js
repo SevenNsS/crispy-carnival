@@ -4,13 +4,13 @@ class ImageClip extends React.Component{
         super(props);
 
         //=>Initialize CANVAS and MARK
-        let winW = document.documentElement.clientWidth,  //需要修改
+        let winW = document.documentElement.clientWidth,
             ratio = window.ratio;
-        let W = winW - 12 * ratio,    //MHMW调为组件尺寸
+        let W = winW - 10*ratio,    //MH MW调为组件尺寸
             H = W,
             MW = W * .7,
             MH = MW,
-            ML = (W - MW) / 2,
+            ML = (W  - MW) / 2,
             MT = (H - MH) / 2;
         this.state = {
             W, H, MW, MH, ML, MT,
@@ -50,19 +50,24 @@ class ImageClip extends React.Component{
                     ref = {x => this._canvas = x}
                     width = {W}
                     height = {H}
+                    style={{
+                        position : 'relative'
+                    }}
                 ></canvas>
 
-                {/* 裁剪区域 */}
+                   {/* 裁剪区域 */}
                 <div className="mark"
                     style = {{
                         width: MW + 'px',
                         height: MH + 'px',
                         left: ML + 'px',
                         top: MT + 'px',
-                        position: 'relative',                       
-                        //display: 'block',
-                        display: S ? 'block' : 'none'
+                        position: 'absolute',                       
+                        display: S ? 'block' : 'none',
+                        background:'#7F778899',
                     }}></div>
+
+               
             </div>
             <div className="buttonBox">
                 <input  type ="file" accept="image/*" className="file"
